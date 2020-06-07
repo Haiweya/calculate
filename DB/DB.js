@@ -13,7 +13,7 @@ const { Sequelize } = require('sequelize');
 
 
 
-// 现在尝试把数据库部署在本地，然后把前后端代码部署在服务器上
+// // 现在尝试把数据库部署在本地，然后把前后端代码部署在服务器上
 
   const sequelize = new Sequelize('calculate', 'root', '1234', {
     host: '192.168.43.21',  
