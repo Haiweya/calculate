@@ -19,10 +19,17 @@ require('./config/passport')(passport);
 
 // 执行前端静态页面
 if(process.env.NODE_ENV ==='production'){
-  app.use(express.static('client/dist'))
-  app.get("*",(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-  })
+  // app.use(express.static('client/dist'))
+  // app.get("*",(req,res)=>{
+  //   res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
+  // })
+
+  //服务器端口测试
+    app.get('/', function (req, res) {
+    res.send('Hello World')
+    
+})
+
 }
  
 // 服务器地址
@@ -33,10 +40,6 @@ app.listen(port,(req,res)=>{
 
 
 
-//服务器端口测试
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
 
 
 const fileItemModel = require('./model/fileItem')
