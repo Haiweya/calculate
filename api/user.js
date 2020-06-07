@@ -105,6 +105,15 @@ router.post('/getUser',urlencodedParser,passport.authenticate('jwt',{session:fal
     })
 })
 
+
+/***
+ * 用户信息请求
+ */
+router.get('/get',(req,res)=>{
+    res.send("这是用户接口")
+})
+
+
 /**
  * 密码修改
  */
