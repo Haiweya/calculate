@@ -12,14 +12,13 @@ const { Sequelize } = require('sequelize');
 //   });
 
 
+//生产环境数据
 
-//  数据库部署在本地，然后把前后端代码部署在服务器上
-
-  const sequelize = new Sequelize('calculate', 'root', '1234', {
-    host: '192.168.43.21',  
-    dialect: 'mysql',
-    timezone: "+08:00",
-  });
+const sequelize = new Sequelize('calculate', 'Abumysql', 'Abu510mysql', {
+  host: '117.50.100.8',  
+  dialect: 'mysql',
+  timezone: "+08:00",
+});
 
 
 

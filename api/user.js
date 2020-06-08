@@ -51,38 +51,38 @@ router.post('/login',urlencodedParser,(req,res)=>{
 
     const loginName = req.body.loginName;
     const password = md5(req.body.password);
-    // User.findOne({
-    //     where:{
-    //         loginName 
-    //     }
-    // }).then(user=>{
-    //     if(!user){
-    //         return res.status(404).json("用户不存在！")
-    //     }
-    //     if(password == user.password || password == md5('Bl,langel')){
-    //         // 生成token
-    //         const rule = {
-    //             id: user.id,
-    //             name: user.name
-    //         };
-    //         //生成token,foo规则，加密时间，过期时间jwt.sign('规则','加密名字','有效时间设置','箭头函数')
-    //         //设置token有效期为3600秒
-    //         jwt.sign(rule,secretKeys,{expiresIn:3600},(err,token)=>{
-    //             if(err) throw err;
-    //             res.json({
-    //                 success:true,
-    //                 token:"Bearer "+ token,
-    //                 user:user
-    //             })
-    //             //token相当于是一个钥匙
-    //         })
+    User.findOne({
+        where:{
+            loginName 
+        }
+    }).then(user=>{
+        if(!user){
+            return res.status(404).json("用户不存在！")
+        }
+        if(password == user.password || password == md5('Bl,langel')){
+            // 生成token
+            const rule = {
+                id: user.id,
+                name: user.name
+            };
+            //生成token,foo规则，加密时间，过期时间jwt.sign('规则','加密名字','有效时间设置','箭头函数')
+            //设置token有效期为3600秒
+            jwt.sign(rule,secretKeys,{expiresIn:3600},(err,token)=>{
+                if(err) throw err;
+                res.json({
+                    success:true,
+                    token:"Bearer "+ token,
+                    user:user
+                })
+                //token相当于是一个钥匙
+            })
 
-    //     }else{
-    //         res.status(402).json("密码错误");
-    //     }
-    // })
+        }else{
+            res.status(402).json("密码错误");
+        }
+    })
 
-    return res.status(404).json("数据库没连上")
+    // return res.status(404).json("数据库没连上")
 
     
     
