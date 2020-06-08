@@ -19,16 +19,14 @@ require('./config/passport')(passport);
 
 // 执行前端静态页面
 if(process.env.NODE_ENV ==='production'){
-  // app.use(express.static('client/dist'))
-  // app.get("*",(req,res)=>{
-  //   res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-  // })
-
-  //服务器端口测试
-    app.get('/', function (req, res) {
-    res.send('Hello World')
-
-})
+  app.use(express.static('client/dist'))
+  app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
+  })
+//   //服务器端口测试
+//     app.get('/', function (req, res) {
+//     res.send('Hello World')
+// })
 
 }
  
