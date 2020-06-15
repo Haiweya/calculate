@@ -17,21 +17,21 @@ app.use(passport.session())
 require('./config/passport')(passport);  
 
 
-// 执行前端静态页面
-if(process.env.NODE_ENV ==='production'){
-  app.use(express.static('client/dist'))
-  app.get("*",(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-  })
-//   //服务器端口测试
-//     app.get('/', function (req, res) {
-//     res.send('Hello World')
+// // 执行前端静态页面
+// if(process.env.NODE_ENV ==='production'){
+  
+// app.use(express.static('client/dist'))
+// app.get("*",(req,res)=>{
+//   res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
 // })
+ 
+// }
 
-}
+
+
  
 // 服务器地址
-const port= process.env.PORT || 3000;
+const port= process.env.PORT || 3001;
 app.listen(port,(req,res)=>{
     console.log (`server is running on ${port}` );
 })
@@ -53,8 +53,6 @@ async function sync(){
     
 }
 // sync();
-
-
 
 
 // 路由部分
