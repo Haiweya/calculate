@@ -1,6 +1,7 @@
 // 处理解析出来的数据表
 function getitem(obj, calOption) {
   const numList = [];
+  // console.log(obj);
   obj.forEach((row, i) => {
     if (row.data.length == 0) {  //跳过无数据的sheet
       return
@@ -11,9 +12,10 @@ function getitem(obj, calOption) {
           if (!i) return;
           numList.push({
             Tablename: row.name,
-            canLength: d[0],
-            canRadius: d[1],
-            solutionHeight: d[2],
+            order:d[0],
+            canLength: d[1],
+            canRadius: d[2],
+            solutionHeight: d[3],
             solutionVolume: null
           });
         });
@@ -25,9 +27,10 @@ function getitem(obj, calOption) {
           numList.push({
             Tablename: row.name,
             canLength: null,
-            canRadius: d[0],
-            solutionHeight: d[1],
-            solutionVolume: d[2]
+            order:d[0],
+            canRadius: d[1],
+            solutionHeight: d[2],
+            solutionVolume: d[3]
           });
         });
       }
@@ -37,10 +40,11 @@ function getitem(obj, calOption) {
           if (!i) return;
           numList.push({
             Tablename: row.name,
-            canLength: d[0],
+            order:d[0],
+            canLength: d[1],
             canRadius: null,
-            solutionHeight: d[1],
-            solutionVolume: d[2]
+            solutionHeight: d[2],
+            solutionVolume: d[3]
           });
         });
       }
@@ -50,10 +54,11 @@ function getitem(obj, calOption) {
           if (!i) return;
           numList.push({
             Tablename: row.name,
-            canLength: d[0],
-            canRadius: d[1],
+            order:d[0],
+            canLength: d[1],
+            canRadius: d[2],
             solutionHeight: null,
-            solutionVolume: d[2]
+            solutionVolume: d[3]
           });
         });
       }
@@ -67,6 +72,7 @@ function getitem(obj, calOption) {
 // 计算液体容积
 
 function calculateVolume(obj, calOption) {
+  // console.log(obj);
   const newObjList = []; //结果信息
   if (calOption.id == 1) {
     // 计算体积
@@ -77,6 +83,7 @@ function calculateVolume(obj, calOption) {
         V = getVolume(L, R, H);
       newObjList.push({
         tablename: item.Tablename,
+        order:item.order,
         canLength: L,
         canRadius: R,
         solutionHeight: H,
@@ -93,6 +100,7 @@ function calculateVolume(obj, calOption) {
         L = getCanlength(R, H, V)
       newObjList.push({
         tablename: item.Tablename,
+        order:item.order,
         canLength: L,
         canRadius: R,
         solutionHeight: H,
@@ -108,6 +116,7 @@ function calculateVolume(obj, calOption) {
         R = getCanRadius(L, H, V);
       newObjList.push({
         tablename: item.Tablename,
+        order:item.order,
         canLength: L,
         canRadius: R,
         solutionHeight: H,
@@ -123,6 +132,7 @@ function calculateVolume(obj, calOption) {
         H = getsolutionHeight(L, R, V);
       newObjList.push({
         tablename: item.Tablename,
+        order:item.order,
         canLength: L,
         canRadius: R,
         solutionHeight: H,

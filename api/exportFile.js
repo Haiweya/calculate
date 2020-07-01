@@ -19,9 +19,13 @@ router.post('/Excel', urlencodedParser,passport.authenticate('jwt',{session:fals
      var conf ={};
      conf.name = "sheet";
        conf.cols = [{
+        caption:'序号',
+        type:'number'	
+     },{
          caption:'罐体长度',
          type:'number'	
-     },{
+     },
+     {
          caption:'半径',
          type:'number'	
      },{
@@ -37,12 +41,13 @@ router.post('/Excel', urlencodedParser,passport.authenticate('jwt',{session:fals
         const rows =[]
         results.forEach((obj,i) => {
             rows[i] = []
+            rows[i].push(obj.order)
             rows[i].push(obj.canLength)
             rows[i].push(obj.canRadius)
             rows[i].push(obj.solutionHeight)
             rows[i].push(obj.solutionVolume)    
         })
-        // console.log(rows)
+        console.log(rows)
     // 插入每行     
     conf.rows = rows
     // 文件配置

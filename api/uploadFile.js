@@ -86,6 +86,7 @@ router.post('/upload', urlencodedParser,passport.authenticate('jwt',{session:fal
             })
             //DB
             fileServ.addFileItem(newfileItenList).then(resp=>{
+                console.log(resp.UploadFileId);
                 res.json(resp.UploadFileId)
             }) 
         

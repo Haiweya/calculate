@@ -91,3 +91,10 @@ $ heroku git:remote -a cal90801
           //   var V = L*(Math.PI*Math.pow(R,2) - Math.pow(R,2)*Math.acos((H-R)/R) + (H-R)*Math.sqrt(Math.pow(R,2)-Math.pow((H-R),2)))
           //   return V.toFixed(4)
           // }   
+
+
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/Haiweya/cal.git
+git push -u origin master

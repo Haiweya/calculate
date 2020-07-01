@@ -23,11 +23,11 @@ async function addFile(info) {
     });
 }
 // 插入文件列表项
-
 async function addFileItem(ObjWithResult) {
     return new Promise((resolve,reject)=>{
         ObjWithResult.forEach((item,i) => {
             fileItem.create({
+                order:item.order,
                 UploadFileId :item.fileId,
                 canLength: item.canLength,
                 canRadius: item.canRadius,
@@ -51,6 +51,9 @@ async function findOneFileitem(UploadFileId){
       fileItem.findAll(
          {
             raw: true,  //设置 raw:true 打印对象 则可返回数组
+            order: [
+                ['order', 'ASC']  //升序
+            ],
             where:{
                 UploadFileId :UploadFileId 
             }
@@ -64,7 +67,7 @@ async function findOneFileitem(UploadFileId){
 
 //  删除一个列表项
 async function deleteItem(id){
-    console.log(id);
+    // console.log(id);
     const code = await fileItem.destroy({
         where:{
             id

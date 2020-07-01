@@ -9,8 +9,12 @@ const FileItem = sequelize.define('FileItem', {
         defaultValue: Sequelize.UUIDV4, // 或 Sequelize.UUIDV1   
         primaryKey: true   
     },
+    order:{
+        type: DataTypes.STRING
+    },
     UploadFileId:{
-        type: DataTypes.STRING   
+        type: DataTypes.STRING,
+        allowNull: false
     },
     tablename: {
         type: DataTypes.STRING,
@@ -36,8 +40,6 @@ const FileItem = sequelize.define('FileItem', {
   }, {
     tableName: 'fileItem'
   });
-
-
 
   module.exports = FileItem;
   

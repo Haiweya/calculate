@@ -10,13 +10,16 @@
       <slected :stateList='stateList' class="divSelected"  @getItemValue='getState'></slected>
       <el-form :model="numForm" status-icon  ref="numForm" v-if="stateSelected.id == 1" class="form" >
         <el-form-item  prop="canLength">
-          <input  v-model="numForm.canLength"  placeholder="罐体长度"/>
+          <label for="numForm.canLength">L :  </label>
+          <input  v-model="numForm.canLength"  placeholder="罐体长度" name="numForm.canLength"/>
         </el-form-item>  
         <el-form-item  prop="canRadius">
-          <input  v-model="numForm.canRadius"  placeholder="罐体半径"/>
+          <label for="numForm.canLength">R :  </label>
+          <input  v-model="numForm.canRadius"  placeholder="罐体半径" name="numForm.canRadius"/>
         </el-form-item>  
         <el-form-item  prop="solutionHeight">
-          <input  v-model="numForm.solutionHeight" placeholder="液位高度"/>
+          <label for="numForm.canLength">H :  </label>
+          <input  v-model="numForm.solutionHeight" placeholder="液位高度" name="numForm.solutionHeight" />
         </el-form-item>  
         <el-form-item>
           <el-tooltip class="item" effect="dark" content="正确输入数据，点击此处进行计算" placement="bottom-start">
@@ -28,12 +31,15 @@
       </el-form>
       <el-form :model="numForm" status-icon  ref="numForm" v-if="stateSelected.id == 2"   class="form">
         <el-form-item  prop="solutionVolume">
+          <label for="numForm.solutionVolume">V :  </label>
           <input  v-model="numForm.solutionVolume"  placeholder="液体体积"/>
         </el-form-item>  
         <el-form-item  prop="canRadius">
+          <label for="numForm.canRadius">R :  </label>
           <input  v-model="numForm.canRadius"  placeholder="罐体半径"/>
         </el-form-item>  
         <el-form-item  prop="solutionHeight">
+          <label for="numForm.solutionHeight">H :  </label>
           <input  v-model="numForm.solutionHeight" placeholder="液位高度"/>
         </el-form-item>  
         <el-form-item>
@@ -216,7 +222,7 @@ export default {
 .tofile{
   text-decoration: none;
   padding: 10px 30px;
-  font-size: 19px;
+  font-size: 1rem;
   color:#42bc93;
   /* border: 1px solid #42bc93; */
   background: none;
@@ -229,21 +235,27 @@ export default {
   color:white;
   background: linear-gradient(to right top, #84c28f,#42bc93);
 }
+.form{
+  width:50%;
+}
+.form label{
+  color:#767976
+}
 .form input{
-  height:45px;
-  width:400px;
+  height:2rem;
+  width:70%;
   border: none;
   outline: none;
   background: none;
   color:#f7f6f2;
   border-bottom: 1.5px solid #cbccc7; 
-  font-size: 17px;
+  font-size: 1rem;
   text-align: left;
-  padding-left: 30px;
+  padding-left: 1rem;
 }
 
 .submit{
-  font-size: 25px;
+  font-size: 1.3rem;
   border:none;
   outline: none;
   background: none;
@@ -253,8 +265,8 @@ export default {
   margin-left: 5px
 }
 .result{
-    margin: 0 25px ;
-    font-size: 15px;
+    margin: 0 1rem ;
+    font-size: 0.9rem;
     color:#f0f1f0;
 }
 .result p {
@@ -277,7 +289,7 @@ export default {
   position: absolute;
   top: 5%;
   left:6%;
-  font-size: 17px;
+  font-size: 0.6rem;
   color:#757575;
  
 }

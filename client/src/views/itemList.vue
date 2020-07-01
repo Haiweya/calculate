@@ -13,16 +13,16 @@
             sum-text=" "
             :summary-method="getColumns"
             style="width: 100%"
-            
+            :default-sort = "{prop: 'order', order: 'ascending'}"
             >
-            <!-- :default-sort = "{prop: 'solutionVolume', order: 'descending'}" -->
-            <el-table-column label="序号" type="index" show-overflow-tooltip width="100" style="margin-left:20px">
-            </el-table-column>
-            <!-- <el-table-column
-            prop="tablename"
-            label="表名"
-            sortable>
+            <!-- :default-sort = "{prop: 'order', order: 'descending'}" -->
+            <!-- <el-table-column label="序号" type="index" show-overflow-tooltip width="100" style="margin-left:20px">
             </el-table-column> -->
+            <el-table-column
+            prop="order"
+            label="序号"
+            sortable>
+            </el-table-column>
             <el-table-column
             prop="canLength"
             label="罐体长度"

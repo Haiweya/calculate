@@ -6,6 +6,6 @@ const fileItem = require('../model/fileItem')
     uploadFile.hasMany(fileItem); // A 有多个 B
     fileItem.belongsTo(uploadFile); // A 属于 B
 }
-relation();
+
 
 
