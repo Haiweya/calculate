@@ -61,8 +61,6 @@ const router = new VueRouter({
 
 // 实现路由守卫
 router.beforeEach((to,form, next)=>{
-  //isAuth 是把登陆状态存储在全局变量中，页面刷新程序从新跑，这个数据就不在了，
-  // 如果用此作为登陆与否的判定条件，用户一刷新就要从新登陆，肯定是不行的哈。
   const isAuth = store.state.isauthenticated  
   const islogin = localStorage.eleToken? true: false;
   if (to.path=="/login" || to.path =="/register"|| to.path =="/forget"|| to.path =="/registerByAdmin"){

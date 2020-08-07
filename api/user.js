@@ -92,7 +92,7 @@ router.post('/login',urlencodedParser,(req,res)=>{
 /***
  * 用户信息请求
  */
-router.post('/getUser',urlencodedParser,passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.post('/getUserinfoInpc',urlencodedParser,passport.authenticate('jwt',{session:false}),(req,res)=>{
     if(!req.body){
         return res.sendStatus(400)
     }
